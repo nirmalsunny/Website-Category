@@ -32,4 +32,4 @@ def show_index(path):
    return category
 
 if __name__ == "__main__":
-    mitphish.run(debug=True, threaded=True, port=5000)
+    mitphish.run(debug=True, threaded=True, port=process.env.PORT)
