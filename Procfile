@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT Category:mitphish
+web: gunicorn Category:mitphish
