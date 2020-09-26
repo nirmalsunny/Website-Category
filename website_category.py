@@ -9,7 +9,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 import sys
 
 
-geckodriver = 'path/to/your/geckodriver'
+geckodriver = 'path/to/geckodriver'
 
 def sitereview(url): 
     options = webdriver.FirefoxOptions()
@@ -25,7 +25,10 @@ def sitereview(url):
     return category   
 
 def main(url):
-    print(sitereview(url))
+    border = "=" * (len("Website Category") + 2)
+    print("\n{0}\n{1}\n{0}\n".format(border, "Website Category"))
+    print("URL: " + url)
+    print("Category: " + sitereview(url))
 
 # Use the below two lines if website_category.py is being run as a standalone file. If you are running this file as
 # a part of a workflow pipeline, comment out these two lines.
