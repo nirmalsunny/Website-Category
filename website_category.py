@@ -21,7 +21,7 @@ def sitereview(url):
         driver.get(base_url + url)
         first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
         category = first_result.get_attribute("textContent")
-        driver.close
+        driver.quit
     return category   
 
 def main(url):
