@@ -27,7 +27,7 @@ def show_index(url):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--remote-debugging-port=9222')
-    chrome_options.binary_location = str(os.environ.get(GOOGLE_CHROME_SHIM))
+    chrome_options.binary_location = str(os.environ.get($GOOGLE_CHROME_SHIM))
 
     with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
