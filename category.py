@@ -11,6 +11,8 @@ CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 
+base_url = "https://sitereview.bluecoat.com/#/lookup-result/"
+
 wc = Flask(__name__)
 
 
@@ -22,7 +24,7 @@ def homepage():
 @wc.route('/check/<path:url>')
 
 
-def show_index(url):
+def sitereview(base_url, url):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
