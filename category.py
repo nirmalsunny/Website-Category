@@ -10,15 +10,18 @@ import os
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
-mitphish = Flask(__name__)
+wc = Flask(__name__)
 
-@mitphish.route('/')
+
+@wc.route('/')
 def homepage():
-    return "MitPhish" #+ path Yay, the file exists! 
+    return "MitPhish"  # + path Yay, the file exists!
 
 
-mitphish.route('/test/<path:path>')
-def show_index(path):
+@wc.route('/check/<path:url>')
+
+
+def show_index(url):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
@@ -26,13 +29,14 @@ def show_index(path):
 
     with webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
-        driver.get(base_url + path)
+        driver.get(base_url + url)
         first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
-        category = first_result.get_attribute("textContent")
+        category = first_result.get_attribute('textContent')
         driver.quit
-   return category
+    return category
+
 
 port = int(os.environ.get('PORT', 5000))
 
 if __name__ == "__main__":
-    mitphish.run(debug=True, threaded=True, port=port)
+    wc.run(debug=True, threaded=True, port=port)
