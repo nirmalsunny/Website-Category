@@ -11,7 +11,6 @@ CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 
-base_url = "https://sitereview.bluecoat.com/#/lookup-result/"
 
 wc = Flask(__name__)
 
@@ -24,13 +23,15 @@ def homepage():
 @wc.route('/check/<path:url>')
 
 
-def sitereview(base_url, url):
+def sitereview(url):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--remote-debugging-port=9222')
     chrome_options.binary_location = GOOGLE_CHROME_BIN
+    
+    base_url = "https://sitereview.bluecoat.com/#/lookup-result/"
 
     with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
