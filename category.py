@@ -7,8 +7,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 import os
 
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 wc = Flask(__name__)
 
@@ -27,9 +25,9 @@ def show_index(url):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--remote-debugging-port=9222')
-    chrome_options.binary_location = str(os.environ.get($GOOGLE_CHROME_SHIM))
+    chrome_options.binary_location = str(os.environ.get(GOOGLE_CHROME_BIN))
 
-    with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
+    with webdriver.Chrome(executable_path=str(os.environ.get(CHROMEDRIVER_PATH)), chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
         driver.get(base_url + url)
         first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
