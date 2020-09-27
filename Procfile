@@ -1,1 +1,1 @@
-web: gunicorn Category:mitphish
+web: gunicorn category:wc
