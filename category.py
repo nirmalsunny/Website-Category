@@ -27,7 +27,7 @@ def show_index(url):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
 
-    with webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
+    with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
         driver.get(base_url + url)
         first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
