@@ -23,9 +23,11 @@ def homepage():
 
 def show_index(url):
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.binary_location = GOOGLE_CHROME_PATH
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.binary_location = STR(os.environ.get(GOOGLE_CHROME_SHIM))
 
     with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
         wait = WebDriverWait(driver, 10)
