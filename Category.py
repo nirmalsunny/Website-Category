@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
+import os
 
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -31,5 +32,7 @@ def show_index(path):
         driver.quit
    return category
 
+port = int(os.environ.get('PORT', 5000))
+
 if __name__ == "__main__":
-    mitphish.run(debug=True, threaded=True, port = int(os.environ.get('PORT', 5000)))
+    mitphish.run(debug=True, threaded=True, port=port)
