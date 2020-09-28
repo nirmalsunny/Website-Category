@@ -1,1 +1,1 @@
-web: gunicorn category:wc
+web: gunicorn aiserver:mitphish
