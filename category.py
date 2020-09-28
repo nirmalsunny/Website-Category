@@ -12,7 +12,6 @@ CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 
-
 wc = Flask(__name__)
 
 
@@ -22,8 +21,6 @@ def homepage():
 
 
 @wc.route('/check/<path:url>')
-
-
 def sitereview(url):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
@@ -31,16 +28,20 @@ def sitereview(url):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--remote-debugging-port=9222')
     chrome_options.binary_location = GOOGLE_CHROME_BIN
-    
+
     base_url = "https://sitereview.bluecoat.com/#/lookup-result/"
 
     with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 5)
         driver.get(base_url + url)
-        first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
-        category = first_result.get_attribute('textContent')
-        driver.quit
-    return category
+        try:
+            first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
+            category = first_result.get_attribute('textContent')
+            driver.quit
+            return category
+        except:
+            driver.quit
+            return "no result"
 
 
 port = int(os.environ.get('PORT', 5000))
