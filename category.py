@@ -31,7 +31,7 @@ def sitereview(url):
     base_url = "https://sitereview.bluecoat.com/#/lookup-result/"
 
     with webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options) as driver:
-        wait = WebDriverWait(driver, 5)
+        wait = WebDriverWait(driver, 3)
         driver.get(base_url + url)
         try:
             first_result = wait.until(presence_of_element_located((By.CLASS_NAME, "clickable-category")))
