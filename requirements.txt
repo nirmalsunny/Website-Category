@@ -1,3 +1,9 @@
 selenium
 flask
 gunicorn
+wheel
+numpy
+pandas
+scikit-learn
+scipy
+sklearn
