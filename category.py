@@ -40,7 +40,7 @@ def sitereview(url):
             return category
         except:
             driver.quit
-            return "no result"
+            return "Unknown"
 
 
 port = int(os.environ.get('PORT', 5000))
